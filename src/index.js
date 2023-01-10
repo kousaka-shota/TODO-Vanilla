@@ -25,6 +25,25 @@ const OnclickAdd = () => {
 
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
+    backButton.addEventListener("click", () => {
+      //戻すテキストを取得
+      const addTarget = backButton.parentNode;
+      const text = addTarget.firstElementChild.innerText;
+
+      //divタグ作成
+      const div = document.createElement("div");
+      div.className = "list-row";
+      //liタグ作成・テキスト入れる
+      const li = document.createElement("li");
+      li.innerText = text;
+      //ボタン作成
+      //未完了のTODOにappend
+      div.appendChild(li);
+      document.getElementById("ul-area").appendChild(div);
+      //完了したタスク削除
+      deleteFromIncompleteList(backButton.parentNode);
+    });
+
     div.appendChild(li);
     div.appendChild(backButton);
     document.getElementById("complete-ul-area").appendChild(div);
