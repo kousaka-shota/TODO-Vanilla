@@ -41,7 +41,7 @@ const OnclickAdd = () => {
       div.appendChild(li);
       document.getElementById("ul-area").appendChild(div);
       //完了したタスク削除
-      deleteFromIncompleteList(backButton.parentNode);
+      deleteFromcompleteList(backButton.parentNode);
     });
 
     div.appendChild(li);
@@ -68,6 +68,10 @@ const OnclickAdd = () => {
 //未完了リストから指定の要素を削除する
 const deleteFromIncompleteList = (target) => {
   document.getElementById("ul-area").removeChild(target);
+};
+
+const deleteFromcompleteList = (target) => {
+  document.getElementById("complete-ul-area").removeChild(target);
 };
 
 document.getElementById("add-button").addEventListener("click", () => {
