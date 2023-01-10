@@ -5,11 +5,21 @@ const OnclickAdd = () => {
   const inputText = document.getElementById("input-text").value;
   document.getElementById("input-text").value = "";
 
-  //タスクの生成
+  createIncompleteList(inputText);
+};
+
+//未完了リストから指定の要素を削除する
+const deleteFromIncompleteList = (target) => {
+  document.getElementById("ul-area").removeChild(target);
+};
+
+//タスクの生成
+const createIncompleteList = (text) => {
   const div = document.createElement("div");
   div.className = "list-row";
+
   const li = document.createElement("li");
-  li.innerText = inputText;
+  li.innerText = text;
 
   //完了ボタン生成
   const completeButton = document.createElement("button");
@@ -29,18 +39,7 @@ const OnclickAdd = () => {
       //戻すテキストを取得
       const addTarget = backButton.parentNode;
       const text = addTarget.firstElementChild.innerText;
-
-      //divタグ作成
-      const div = document.createElement("div");
-      div.className = "list-row";
-      //liタグ作成・テキスト入れる
-      const li = document.createElement("li");
-      li.innerText = text;
-      //ボタン作成
-      //未完了のTODOにappend
-      div.appendChild(li);
-      document.getElementById("ul-area").appendChild(div);
-      //完了したタスク削除
+      createIncompleteList(text);
       deleteFromcompleteList(backButton.parentNode);
     });
 
@@ -63,11 +62,6 @@ const OnclickAdd = () => {
   div.appendChild(deleteButton);
 
   document.getElementById("ul-area").appendChild(div);
-};
-
-//未完了リストから指定の要素を削除する
-const deleteFromIncompleteList = (target) => {
-  document.getElementById("ul-area").removeChild(target);
 };
 
 const deleteFromcompleteList = (target) => {
